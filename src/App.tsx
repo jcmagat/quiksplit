@@ -1,10 +1,10 @@
 import "./App.css";
-import RecipeContainer from "./containers/RecipeContainer";
+import Recipes from "./features/Recipes";
 
 function App() {
   return (
     <div className="App">
-      <RecipeContainer />
+      <Recipes />
     </div>
   );
 }

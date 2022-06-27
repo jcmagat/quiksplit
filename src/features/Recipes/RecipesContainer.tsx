@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { RecipeCard } from "./RecipeCard";
+import "./style.css";
 
-function RecipeContainer() {
+export function RecipeContainer() {
   const API_KEY = process.env.REACT_APP_API_KEY;
 
   const [recipes, setRecipes] = useState<any>([]);
@@ -19,15 +21,10 @@ function RecipeContainer() {
   console.log(recipes);
 
   return (
-    <>
+    <div className="recipe-container">
       {recipes.map((recipe: any) => (
-        <div>
-          <img src={recipe.image} alt=""></img>
-          <h1>{recipe.title}</h1>
-        </div>
+        <RecipeCard recipe={recipe} />
       ))}
-    </>
+    </div>
   );
 }
-
-export default RecipeContainer;
