@@ -1,10 +1,10 @@
 import "./App.css";
-import Recipes from "./features/Recipes";
+import Friends from "./features/Friends";
 
 function App() {
   return (
     <div className="App">
-      <Recipes />
+      <Friends />
     </div>
   );
 }
