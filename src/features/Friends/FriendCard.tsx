@@ -1,19 +1,31 @@
 import "./style.css";
+import { useState } from "react";
+import { Friend } from "./FriendsContainer";
 
 interface Props {
-  friend: any;
+  friend: Friend;
 }
 
 export function FriendCard(props: Props) {
   const { friend } = props;
 
+  const [isEditMode, setIsEditMode] = useState(false);
+
   return (
     <div className="friend-card">
-      <h5>{friend.name}</h5>
-
-      <form>
-        <input value={friend.expense} type="number"></input>
-      </form>
+      {isEditMode ? (
+        <>
+          <input value={friend.name} type="text"></input>
+          <input value={friend.expense} type="number"></input>
+          <button onClick={() => setIsEditMode(false)}>save</button>
+        </>
+      ) : (
+        <>
+          <h5>{friend.name}</h5>
+          <body>{friend.expense}</body>
+          <button onClick={() => setIsEditMode(true)}>edit</button>
+        </>
+      )}
     </div>
   );
 }

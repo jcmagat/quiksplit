@@ -1,3 +1,18 @@
+.friends-container {
+  background: pink;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1em;
+}
+
 .friend-card {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -14,5 +29,6 @@
   width: -moz-fit-content;
   width: fit-content;
   border: 1px solid black;
+  padding: 0.5em;
 }
 /*# sourceMappingURL=style.css.map */
