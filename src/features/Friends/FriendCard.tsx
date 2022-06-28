@@ -1,6 +1,6 @@
 import "./style.css";
 import { useState } from "react";
-import { Friend } from "./FriendsContainer";
+import { Friend } from "../../types";
 
 interface Props {
   friend: Friend;

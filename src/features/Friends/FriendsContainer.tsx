@@ -1,20 +1,17 @@
 import { useState } from "react";
 import { FriendCard } from "./FriendCard";
+import { Friend } from "../../types";
 
 const myFriends: Friend[] = [
-  { name: "Hector", expense: 50 },
-  { name: "Juan", expense: 70 },
+  { id: 0, name: "Hector", expense: 50 },
+  { id: 1, name: "Juan", expense: 70 },
 ];
-export interface Friend {
-  name?: string;
-  expense?: number;
-}
 
 export function FriendsContainer() {
   const [friends, setFriends] = useState(myFriends);
 
   const handleAddFriend = () => {
-    setFriends((prev) => [...prev, { name: "hi", expense: 6 }]);
+    setFriends((prev) => [...prev, { id: 2, name: "hi", expense: 6 }]);
   };
 
   return (
