@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import friendsReducer from "./friends";
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    friends: friendsReducer,
+  },
 });
 
 export default store;
