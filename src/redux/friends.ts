@@ -1,11 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Friend } from "../types";
 
-const myFriends: Friend[] = [
-  { id: 0, name: "Hector", expense: 50 },
-  { id: 1, name: "Juan", expense: 70 },
-];
-
 interface Action {
   type: string;
   payload: Friend;
@@ -13,14 +8,23 @@ interface Action {
 
 export const friendsSlice = createSlice({
   name: "friends",
-  initialState: myFriends,
+  initialState: [] as Friend[],
   reducers: {
     add: (state, action: Action) => {
+      action.payload.id = state.length;
       state.push(action.payload);
+    },
+    edit: (state, action: Action) => {
+      state.forEach((friend) => {
+        if (friend.id === action.payload.id) {
+          friend.name = action.payload.name;
+          friend.expense = action.payload.expense;
+        }
+      });
     },
   },
 });
 
-export const { add } = friendsSlice.actions;
+export const { add, edit } = friendsSlice.actions;
 
 export default friendsSlice.reducer;

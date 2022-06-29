@@ -13,13 +13,13 @@ export function FriendsContainer() {
   const dispatch = useDispatch();
 
   const handleAddFriend = () => {
-    dispatch(add({ id: 3, name: "hello", expense: 22 }));
+    dispatch(add({ name: "Name", expense: 0 }));
   };
 
   return (
     <div className="friends-container">
-      {friends.map((friend: any) => (
-        <FriendCard friend={friend} />
+      {friends.map((friend) => (
+        <FriendCard key={friend.id} friend={friend} />
       ))}
 
       <button onClick={handleAddFriend}>+</button>
