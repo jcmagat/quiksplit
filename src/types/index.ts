@@ -1,5 +1,8 @@
 export interface Friend {
-  id?: number;
-  name?: string;
-  expense?: number;
+  name: string;
+  expense: number;
+}
+
+export interface FriendMap {
+  [id: number]: Friend;
 }

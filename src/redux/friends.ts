@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Friend } from "../types";
+import { Friend, FriendMap } from "../types";
 
 interface Action {
   type: string;
@@ -8,19 +8,13 @@ interface Action {
 
 export const friendsSlice = createSlice({
   name: "friends",
-  initialState: [] as Friend[],
+  initialState: {} as FriendMap,
   reducers: {
     add: (state, action: Action) => {
-      action.payload.id = state.length;
-      state.push(action.payload);
+      state[Object.keys(state).length] = action.payload;
     },
     edit: (state, action: Action) => {
-      state.forEach((friend) => {
-        if (friend.id === action.payload.id) {
-          friend.name = action.payload.name;
-          friend.expense = action.payload.expense;
-        }
-      });
+      state[Object.keys(state).length] = action.payload;
     },
   },
 });

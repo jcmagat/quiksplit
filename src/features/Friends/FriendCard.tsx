@@ -18,15 +18,16 @@ export function FriendCard(props: Props) {
 
   const dispatch = useDispatch();
 
-  const handleSave = () => {
-    dispatch(edit({ id: friend.id, name: name, expense: expense }));
+  const handleSave = (event: any) => {
+    event.preventDefault();
+    dispatch(edit({ name: name, expense: expense }));
     setIsEditMode(false);
   };
 
   return (
-    <div className="friend-card">
+    <>
       {isEditMode ? (
-        <>
+        <form className="friend-card" onSubmit={handleSave}>
           <input
             type="text"
             value={name}
@@ -39,15 +40,15 @@ export function FriendCard(props: Props) {
             onChange={(event) => setExpense(parseInt(event.target.value))}
           />
 
-          <button onClick={handleSave}>save</button>
-        </>
+          <button type="submit">save</button>
+        </form>
       ) : (
-        <>
+        <div className="friend-card">
           <h5>{friend.name}</h5>
           <p>{friend.expense}</p>
           <button onClick={() => setIsEditMode(true)}>edit</button>
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 }

@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 import { add } from "../../redux/friends";
-import { Friend } from "../../types";
+import { FriendMap } from "../../types";
 import { FriendCard } from "./FriendCard";
 
 interface State {
-  friends: Friend[];
+  friends: FriendMap;
 }
 
 export function FriendsContainer() {
@@ -18,8 +18,8 @@ export function FriendsContainer() {
 
   return (
     <div className="friends-container">
-      {friends.map((friend) => (
-        <FriendCard key={friend.id} friend={friend} />
+      {Object.values(friends).map((friend, index) => (
+        <FriendCard key={index} friend={friend} />
       ))}
 
       <button onClick={handleAddFriend}>+</button>
