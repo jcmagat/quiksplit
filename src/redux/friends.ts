@@ -3,22 +3,27 @@ import { Friend, FriendMap } from "../types";
 
 interface Action {
   type: string;
-  payload: Friend;
+  payload: {
+    id?: number;
+    friend: Friend;
+  };
 }
 
 export const friendsSlice = createSlice({
   name: "friends",
   initialState: {} as FriendMap,
   reducers: {
-    add: (state, action: Action) => {
-      state[Object.keys(state).length] = action.payload;
+    addFriend: (state, action: Action) => {
+      state[Object.keys(state).length] = action.payload.friend;
     },
-    edit: (state, action: Action) => {
-      state[Object.keys(state).length] = action.payload;
+    editFriend: (state, action: Action) => {
+      if (action.payload.id == null) return;
+
+      state[action.payload.id] = action.payload.friend;
     },
   },
 });
 
-export const { add, edit } = friendsSlice.actions;
+export const { addFriend, editFriend } = friendsSlice.actions;
 
 export default friendsSlice.reducer;

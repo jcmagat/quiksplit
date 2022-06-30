@@ -1,15 +1,16 @@
 import "./style.css";
 import { useDispatch } from "react-redux";
-import { edit } from "../../redux/friends";
+import { editFriend } from "../../redux/friends";
 import { useState } from "react";
 import { Friend } from "../../types";
 
 interface Props {
+  id: number;
   friend: Friend;
 }
 
 export function FriendCard(props: Props) {
-  const { friend } = props;
+  const { id, friend } = props;
 
   const [isEditMode, setIsEditMode] = useState(false);
 
@@ -20,7 +21,8 @@ export function FriendCard(props: Props) {
 
   const handleSave = (event: any) => {
     event.preventDefault();
-    dispatch(edit({ name: name, expense: expense }));
+
+    dispatch(editFriend({ id, friend: { name, expense } }));
     setIsEditMode(false);
   };
 

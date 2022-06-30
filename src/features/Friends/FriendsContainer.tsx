@@ -1,25 +1,21 @@
 import { useSelector, useDispatch } from "react-redux";
-import { add } from "../../redux/friends";
-import { FriendMap } from "../../types";
+import { addFriend } from "../../redux/friends";
+import { RootState } from "../../redux/store";
 import { FriendCard } from "./FriendCard";
 
-interface State {
-  friends: FriendMap;
-}
-
 export function FriendsContainer() {
-  const friends = useSelector((state: State) => state.friends);
+  const friends = useSelector((state: RootState) => state.friends);
 
   const dispatch = useDispatch();
 
   const handleAddFriend = () => {
-    dispatch(add({ name: "Name", expense: 0 }));
+    dispatch(addFriend({ friend: { name: "Name", expense: 0 } }));
   };
 
   return (
     <div className="friends-container">
-      {Object.values(friends).map((friend, index) => (
-        <FriendCard key={index} friend={friend} />
+      {Object.entries(friends).map(([id, friend]) => (
+        <FriendCard key={id} id={parseInt(id)} friend={friend} />
       ))}
 
       <button onClick={handleAddFriend}>+</button>
