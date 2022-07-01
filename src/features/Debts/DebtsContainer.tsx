@@ -1,9 +1,11 @@
+import "./style.css";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import DebtCard from "./DebtCard";
 
 interface Debt {
-  debtee: number; // person to whom debt is owed
-  debtor: number; // person who owes debt
+  debtorId: number; // person who owes the debt
+  debteeId: number; // person to whom the debt is owed
   debt: number;
 }
 
@@ -29,14 +31,14 @@ function DebtsContainer() {
 
       if (difference > 0) {
         debts.push({
-          debtee: parseInt(id),
-          debtor: parseInt(nextId),
+          debtorId: parseInt(nextId),
+          debteeId: parseInt(id),
           debt: difference,
         });
       } else if (difference < 0) {
         debts.push({
-          debtee: parseInt(nextId),
-          debtor: parseInt(id),
+          debtorId: parseInt(id),
+          debteeId: parseInt(nextId),
           debt: Math.abs(difference),
         });
       }
@@ -44,15 +46,16 @@ function DebtsContainer() {
   }
 
   return (
-    <>
+    <div className="debts-container">
       {debts.map((debt, index) => (
-        <div key={index}>
-          <h2>{`${friends[debt.debtor].name} owes ${
-            friends[debt.debtee].name
-          } \$${debt.debt}`}</h2>
-        </div>
+        <DebtCard
+          key={index}
+          debtorName={friends[debt.debtorId].name}
+          debteeName={friends[debt.debteeId].name}
+          debt={debt.debt}
+        />
       ))}
-    </>
+    </div>
   );
 }
 
