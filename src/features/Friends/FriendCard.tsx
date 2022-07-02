@@ -1,6 +1,6 @@
 import "./style.css";
 import { useDispatch } from "react-redux";
-import { editFriend } from "../../redux/friends";
+import { editFriend, deleteFriend } from "../../redux/friends";
 import { useState } from "react";
 import { Friend } from "../../types";
 
@@ -20,10 +20,14 @@ export function FriendCard(props: Props) {
   const dispatch = useDispatch();
 
   const handleSave = (event: any) => {
-    event.preventDefault();
+    // event.preventDefault();
 
     dispatch(editFriend({ id, friend: { name, expense } }));
     setIsEditMode(false);
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteFriend({ id }));
   };
 
   return (
@@ -42,13 +46,22 @@ export function FriendCard(props: Props) {
             onChange={(event) => setExpense(parseInt(event.target.value))}
           />
 
-          <button type="submit">save</button>
+          <button type="submit">
+            <i className="fa-solid fa-check"></i>
+          </button>
+
+          <button type="button" onClick={handleDelete}>
+            <i className="fa-solid fa-trash"></i>
+          </button>
         </form>
       ) : (
         <div className="friend-card">
           <h5>{friend.name}</h5>
           <p>{friend.expense}</p>
-          <button onClick={() => setIsEditMode(true)}>edit</button>
+
+          <button onClick={() => setIsEditMode(true)}>
+            <i className="fa-solid fa-pen"></i>
+          </button>
         </div>
       )}
     </>
