@@ -1,6 +1,19 @@
-.navigation {
-  margin: auto;
+.nav {
+  margin: 0 auto 1em;
   max-width: 600px;
+  padding: 1em;
+}
+
+.nav-title {
+  margin: 0;
+}
+
+.nav-title span {
+  color: #65655e;
+}
+
+.nav-subtitle {
+  margin: 0.5em auto 0;
 }
 
 .friends-container {
@@ -14,7 +27,13 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 1em;
+  gap: 0.5em;
+  border-bottom: 1px solid #65655e;
+  padding-bottom: 2em;
+}
+
+.friend-add {
+  margin-top: 1.5em;
 }
 
 .friend-card {
@@ -32,8 +51,9 @@
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  border: 1px solid black;
   padding: 0.5em;
+  border: 1px solid #65655e;
+  border-radius: 0.5em;
 }
 
 .friend-card button {
@@ -59,10 +79,11 @@
 }
 
 .debt-card {
-  border: 1px solid black;
+  border: 1px solid #65655e;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   padding: 0.5em;
+  border-radius: 0.5em;
 }
 /*# sourceMappingURL=style.css.map */

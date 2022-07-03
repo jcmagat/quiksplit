@@ -18,7 +18,9 @@ export function FriendsContainer() {
         <FriendCard key={id} id={parseInt(id)} friend={friend} />
       ))}
 
-      <button onClick={handleAddFriend}>+</button>
+      <button className="friend-add" onClick={handleAddFriend}>
+        +
+      </button>
     </div>
   );
 }
