@@ -1,4 +1,3 @@
-import "./style.css";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import DebtCard from "./DebtCard";

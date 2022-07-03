@@ -1,5 +1,3 @@
-import "./style.css";
-
 interface Props {
   debtorName: string;
   debteeName: string;

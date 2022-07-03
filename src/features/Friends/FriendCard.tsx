@@ -1,4 +1,3 @@
-import "./style.css";
 import { useDispatch } from "react-redux";
 import { editFriend, deleteFriend } from "../../redux/friends";
 import { useState } from "react";
