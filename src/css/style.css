@@ -9,7 +9,7 @@
 }
 
 .nav-title span {
-  color: #65655e;
+  color: #828a95;
 }
 
 .nav-subtitle {
@@ -27,13 +27,15 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 0.5em;
-  border-bottom: 1px solid #65655e;
-  padding-bottom: 2em;
+  gap: 1em;
 }
 
 .friend-add {
-  margin-top: 1.5em;
+  cursor: pointer;
+  padding: 0.75em 4em;
+  border: 1px solid #828a95;
+  background: inherit;
+  border-radius: 0.5em;
 }
 
 .friend-card {
@@ -47,12 +49,12 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 1em;
+  gap: 5em;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  padding: 0.5em;
-  border: 1px solid #65655e;
+  padding: 0.5em 5em;
+  border: 1px solid #828a95;
   border-radius: 0.5em;
 }
 
@@ -64,26 +66,16 @@
 }
 
 .debts-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 0.5em;
-  margin-top: 2em;
-}
-
-.debt-card {
-  border: 1px solid #65655e;
+  margin: 2em auto 0;
+  border: 1px solid #828a95;
+  border-radius: 0.5em;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  padding: 0.5em;
-  border-radius: 0.5em;
+  padding: 0.5em 3em;
+}
+
+.debts-container ul {
+  padding: 0 1em;
 }
 /*# sourceMappingURL=style.css.map */

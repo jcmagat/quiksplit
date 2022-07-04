@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import DebtCard from "./DebtCard";
 
 interface Debt {
   debtorId: number; // person who owes the debt
@@ -14,10 +13,14 @@ function DebtsContainer() {
   const friendsEntries = Object.entries(friends);
   const count = Object.keys(friends).length;
 
+  let total = 0;
+
   let debts = [] as Debt[];
 
   for (let i = 0; i < friendsEntries.length; i++) {
     const [id, friend] = friendsEntries[i];
+
+    total += friend.expense;
 
     const expense = friend.expense / count;
 
@@ -46,14 +49,18 @@ function DebtsContainer() {
 
   return (
     <div className="debts-container">
-      {debts.map((debt, index) => (
-        <DebtCard
-          key={index}
-          debtorName={friends[debt.debtorId].name}
-          debteeName={friends[debt.debteeId].name}
-          debt={debt.debt}
-        />
-      ))}
+      <h4>{`Total expenses: $${total}`}</h4>
+      <p>{`Each person pays $${(total / count).toFixed(2)}`}</p>
+
+      <ul>
+        {debts.map((debt, index) => (
+          <li key={index}>
+            {`${friends[debt.debtorId].name} ➡ ${
+              friends[debt.debteeId].name
+            } $${debt.debt.toFixed(2)}`}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

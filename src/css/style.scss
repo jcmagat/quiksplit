@@ -1,7 +1,7 @@
-// Variables
-$gray: #65655e;
+// ========== Variables ==========
+$gray: #828a95;
 
-// Navigation
+// ========== Navigation ==========
 .nav {
   margin: 0 auto 1em;
   max-width: 600px;
@@ -20,27 +20,29 @@ $gray: #65655e;
   margin: 0.5em auto 0;
 }
 
-// Friends
+// ========== Friends ==========
 .friends-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5em;
-  border-bottom: 1px solid $gray;
-  padding-bottom: 2em;
+  gap: 1em;
 }
 
 .friend-add {
-  margin-top: 1.5em;
+  cursor: pointer;
+  padding: 0.75em 4em;
+  border: 1px solid $gray;
+  background: inherit;
+  border-radius: 0.5em;
 }
 
 .friend-card {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 1em;
+  gap: 5em;
   width: fit-content;
-  padding: 0.5em;
+  padding: 0.5em 5em;
   border: 1px solid $gray;
   border-radius: 0.5em;
 
@@ -52,18 +54,15 @@ $gray: #65655e;
   }
 }
 
-// Debts
+// ========== Debts ==========
 .debts-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5em;
-  margin-top: 2em;
-}
-
-.debt-card {
+  margin: 2em auto 0;
   border: 1px solid $gray;
-  width: fit-content;
-  padding: 0.5em;
   border-radius: 0.5em;
+  width: fit-content;
+  padding: 0.5em 3em;
+
+  ul {
+    padding: 0 1em;
+  }
 }
