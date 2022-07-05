@@ -18,9 +18,7 @@ export function FriendCard(props: Props) {
 
   const dispatch = useDispatch();
 
-  const handleSave = (event: any) => {
-    // event.preventDefault();
-
+  const handleSave = () => {
     dispatch(editFriend({ id, friend: { name, expense } }));
     setIsEditMode(false);
   };
@@ -29,40 +27,40 @@ export function FriendCard(props: Props) {
     dispatch(deleteFriend({ id }));
   };
 
+  if (isEditMode) {
+    return (
+      <form className="friend-card" onSubmit={handleSave}>
+        <input
+          type="text"
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+        />
+
+        <input
+          type="number"
+          value={expense}
+          onChange={(event) => setExpense(parseInt(event.target.value))}
+        />
+
+        <button type="submit">
+          <i className="fa-solid fa-check"></i>
+        </button>
+
+        <button type="button" onClick={handleDelete}>
+          <i className="fa-solid fa-trash"></i>
+        </button>
+      </form>
+    );
+  }
+
   return (
-    <>
-      {isEditMode ? (
-        <form className="friend-card" onSubmit={handleSave}>
-          <input
-            type="text"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-          />
+    <div className="friend-card">
+      <h5>{friend.name}</h5>
+      <p>{friend.expense}</p>
 
-          <input
-            type="number"
-            value={expense}
-            onChange={(event) => setExpense(parseInt(event.target.value))}
-          />
-
-          <button type="submit">
-            <i className="fa-solid fa-check"></i>
-          </button>
-
-          <button type="button" onClick={handleDelete}>
-            <i className="fa-solid fa-trash"></i>
-          </button>
-        </form>
-      ) : (
-        <div className="friend-card">
-          <h5>{friend.name}</h5>
-          <p>{friend.expense}</p>
-
-          <button onClick={() => setIsEditMode(true)}>
-            <i className="fa-solid fa-pen"></i>
-          </button>
-        </div>
-      )}
-    </>
+      <button onClick={() => setIsEditMode(true)}>
+        <i className="fa-solid fa-pen"></i>
+      </button>
+    </div>
   );
 }

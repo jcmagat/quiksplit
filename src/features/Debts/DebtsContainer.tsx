@@ -49,8 +49,15 @@ function DebtsContainer() {
 
   return (
     <div className="debts-container">
-      <h4>{`Total expenses: $${total}`}</h4>
-      <p>{`Each person pays $${(total / count).toFixed(2)}`}</p>
+      <h4 className="debts-title">
+        Total expenses:
+        <span>{`$${total.toFixed(2)}`}</span>
+      </h4>
+
+      <p className="debts-subtitle">
+        Each person pays
+        <span>{`$${(total / count).toFixed(2)}`}</span>
+      </p>
 
       <ul>
         {debts.map((debt, index) => (

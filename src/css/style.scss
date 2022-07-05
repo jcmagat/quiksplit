@@ -1,11 +1,15 @@
 // ========== Variables ==========
 $gray: #828a95;
 
+// Parent
+.parent-container {
+  max-width: 600px;
+  margin: auto;
+}
+
 // ========== Navigation ==========
 .nav {
-  margin: 0 auto 1em;
-  max-width: 600px;
-  padding: 1em;
+  margin: 1em 1em 2em;
 }
 
 .nav-title {
@@ -17,11 +21,12 @@ $gray: #828a95;
 }
 
 .nav-subtitle {
-  margin: 0.5em auto 0;
+  margin: 0.5em 0 0;
 }
 
 // ========== Friends ==========
 .friends-container {
+  margin: 0 1em 2em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,11 +45,10 @@ $gray: #828a95;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 5em;
-  width: fit-content;
-  padding: 0.5em 5em;
+  justify-content: space-around;
   border: 1px solid $gray;
   border-radius: 0.5em;
+  width: 100%;
 
   button {
     padding: 0.75em;
@@ -56,13 +60,33 @@ $gray: #828a95;
 
 // ========== Debts ==========
 .debts-container {
-  margin: 2em auto 0;
   border: 1px solid $gray;
   border-radius: 0.5em;
-  width: fit-content;
-  padding: 0.5em 3em;
+  margin: 0 1em;
 
   ul {
-    padding: 0 1em;
+    padding: 0 3em;
+  }
+}
+
+.debts-title {
+  position: relative;
+  margin: 1em 2em 0;
+
+  span {
+    position: absolute;
+    right: 0;
+  }
+}
+
+.debts-subtitle {
+  position: relative;
+  border-bottom: 1px solid $gray;
+  margin: 0;
+  padding: 0.5em 2em;
+
+  span {
+    position: absolute;
+    right: 2em;
   }
 }

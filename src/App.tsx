@@ -5,7 +5,7 @@ import Debts from "./features/Debts";
 
 function App() {
   return (
-    <div>
+    <div className="parent-container">
       <Navigation />
       <Friends />
       <Debts />

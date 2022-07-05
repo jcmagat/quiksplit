@@ -1,7 +1,10 @@
-.nav {
-  margin: 0 auto 1em;
+.parent-container {
   max-width: 600px;
-  padding: 1em;
+  margin: auto;
+}
+
+.nav {
+  margin: 1em 1em 2em;
 }
 
 .nav-title {
@@ -13,10 +16,11 @@
 }
 
 .nav-subtitle {
-  margin: 0.5em auto 0;
+  margin: 0.5em 0 0;
 }
 
 .friends-container {
+  margin: 0 1em 2em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -49,13 +53,11 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 5em;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  padding: 0.5em 5em;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   border: 1px solid #828a95;
   border-radius: 0.5em;
+  width: 100%;
 }
 
 .friend-card button {
@@ -66,16 +68,34 @@
 }
 
 .debts-container {
-  margin: 2em auto 0;
   border: 1px solid #828a95;
   border-radius: 0.5em;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  padding: 0.5em 3em;
+  margin: 0 1em;
 }
 
 .debts-container ul {
-  padding: 0 1em;
+  padding: 0 3em;
+}
+
+.debts-title {
+  position: relative;
+  margin: 1em 2em 0;
+}
+
+.debts-title span {
+  position: absolute;
+  right: 0;
+}
+
+.debts-subtitle {
+  position: relative;
+  border-bottom: 1px solid #828a95;
+  margin: 0;
+  padding: 0.5em 2em;
+}
+
+.debts-subtitle span {
+  position: absolute;
+  right: 2em;
 }
 /*# sourceMappingURL=style.css.map */
