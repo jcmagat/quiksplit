@@ -59,12 +59,11 @@ function DebtsContainer() {
         <span>{`$${(total / count).toFixed(2)}`}</span>
       </p>
 
-      <ul>
+      <ul className="debts-list">
         {debts.map((debt, index) => (
           <li key={index}>
-            {`${friends[debt.debtorId].name} ➡ ${
-              friends[debt.debteeId].name
-            } $${debt.debt.toFixed(2)}`}
+            {`${friends[debt.debtorId].name} ➡ ${friends[debt.debteeId].name}`}
+            <span>{`$${debt.debt.toFixed(2)}`}</span>
           </li>
         ))}
       </ul>

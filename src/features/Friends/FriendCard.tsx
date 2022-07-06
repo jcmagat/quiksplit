@@ -18,7 +18,9 @@ export function FriendCard(props: Props) {
 
   const dispatch = useDispatch();
 
-  const handleSave = () => {
+  const handleSave = (event: any) => {
+    event.preventDefault();
+
     dispatch(editFriend({ id, friend: { name, expense } }));
     setIsEditMode(false);
   };
@@ -56,7 +58,8 @@ export function FriendCard(props: Props) {
   return (
     <div className="friend-card">
       <h5>{friend.name}</h5>
-      <p>{friend.expense}</p>
+
+      <p>{`$${friend.expense.toFixed(2)}`}</p>
 
       <button onClick={() => setIsEditMode(true)}>
         <i className="fa-solid fa-pen"></i>
