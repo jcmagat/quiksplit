@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { Friend } from "../../types";
+import simplify from "./simplify";
 
 interface Debt {
   debtorId: number; // person who owes the debt
@@ -48,6 +49,23 @@ function DebtsContainer() {
     }
   }
 
+  // ===================================
+  const debtsAdjMatrix = friendsEntries.map(([debtorId, debtor]) =>
+    friendsEntries.map(([creditorId, creditor]) => {
+      if (debtorId === creditorId) return 0;
+
+      return creditor.expense / count;
+    })
+  );
+
+  // console.log(debtsAdjMatrix);
+
+  const handleSimplify = () => {
+    const debtsSimplified = simplify(debtsAdjMatrix);
+    console.log(debtsSimplified);
+  };
+  // ===================================
+
   return (
     <>
       {count > 0 && (
@@ -72,6 +90,8 @@ function DebtsContainer() {
               </li>
             ))}
           </ul>
+
+          <button onClick={handleSimplify}>Simplify</button>
         </div>
       )}
     </>
