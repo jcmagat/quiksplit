@@ -1,26 +1,9 @@
 function getMin(arr) {
-  var minInd = 0;
-
-  for (let i = 1; i < arr.length; i++) {
-    if (arr[i] < arr[minInd]) minInd = i;
-  }
-
-  return minInd;
+  return arr.indexOf(Math.min(...arr));
 }
 
 function getMax(arr) {
-  var maxInd = 0;
-
-  for (let i = 1; i < arr.length; i++) {
-    if (arr[i] > arr[maxInd]) maxInd = i;
-  }
-
-  return maxInd;
-}
-
-// A utility function to return minimum of 2 values
-function minOf2(x, y) {
-  return x < y ? x : y;
+  return arr.indexOf(Math.max(...arr));
 }
 
 // Given a set of persons as graph
@@ -32,8 +15,6 @@ function minOf2(x, y) {
 function simplify(graph) {
   if (graph.length < 2) return graph;
 
-  // Create an array amount,
-  // initialize all value in it as 0.
   let amount = Array(graph.length).fill(0);
 
   // Calculate the net amount to
@@ -50,54 +31,40 @@ function simplify(graph) {
 
   let result = [];
 
-  // amount[p] indicates the net amount
-  // to be credited/debited to/from person 'p'
-  // If amount[p] is positive, then
-  // i'th person will amount[i]
-  // If amount[p] is negative, then
-  // i'th person will give -amount[i]
-  function simplifyRecursive(amount) {
-    // Find the indexes of minimum and
-    // maximum values in amount
-    // amount[mxCredit] indicates the maximum amount
-    // to be given (or credited) to any person .
-    // And amount[mxDebit] indicates the maximum amount
-    // to be taken(or debited) from any person.
-    // So if there is a positive value in amount,
-    // then there must be a negative value
-    let mxCredit = getMax(amount);
+  let creditorId = getMax(amount);
+  let debtorId = getMin(amount);
 
-    let mxDebit = getMin(amount);
+  while (
+    Number(amount[creditorId].toFixed(2)) !== 0 ||
+    Number(amount[debtorId].toFixed(2)) !== 0
+  ) {
+    // console.log("before: ", amount);
+    // console.log("creditor: ", creditorId, " | debtor: ", debtorId);
+    // console.log(
+    //   "credit: ",
+    //   amount[creditorId].toFixed(2),
+    //   " | debt: ",
+    //   amount[debtorId].toFixed(2)
+    // );
 
-    // If both amounts are 0, then
-    // all amounts are settled
-    if (amount[mxCredit] <= 0 && amount[mxDebit] <= 0) return;
+    // Determine the max that debtor has to pay the creditor
+    let debt = Math.min(-amount[debtorId], amount[creditorId]);
+    amount[creditorId] -= debt;
+    amount[debtorId] += debt;
 
-    // Find the minimum of two amounts
-    let min = minOf2(-amount[mxDebit], amount[mxCredit]);
+    // console.log(`${debtorId} pays ${creditorId}: $${debt}`);
 
-    amount[mxCredit] -= min;
-    amount[mxDebit] += min;
-
-    console.log(amount);
-
-    // If minimum is the maximum amount to be
-    console.log(`${mxDebit} pays ${mxCredit}: $${min}`);
     result.push({
-      debtorId: mxDebit,
-      creditorId: mxCredit,
-      amount: min,
+      debtorId: debtorId,
+      creditorId: creditorId,
+      amount: debt,
     });
 
-    // Recur for the amount array.
-    // Note that it is guaranteed that
-    // the recursion would terminate
-    // as either amount[mxCredit]  or
-    // amount[mxDebit] becomes 0
-    simplifyRecursive(amount);
-  }
+    // console.log("after: ", amount, `\n\n`);
 
-  simplifyRecursive(amount);
+    creditorId = getMax(amount);
+    debtorId = getMin(amount);
+  }
 
   return result;
 }
