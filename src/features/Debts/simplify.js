@@ -13,8 +13,6 @@ function getMax(arr) {
 // finds and prints the minimum
 // cash flow to settle all debts.
 function simplify(graph) {
-  if (graph.length < 2) return graph;
-
   let amount = Array(graph.length).fill(0);
 
   // Calculate the net amount to
@@ -31,13 +29,9 @@ function simplify(graph) {
 
   let result = [];
 
-  let creditorId = getMax(amount);
-  let debtorId = getMin(amount);
-
-  while (
-    Number(amount[creditorId].toFixed(2)) !== 0 ||
-    Number(amount[debtorId].toFixed(2)) !== 0
-  ) {
+  // Finish the while loop when every number in amount is 0
+  // (i.e. when all debts are settled)
+  while (!amount.every((num) => Number(num.toFixed(2)) === 0)) {
     // console.log("before: ", amount);
     // console.log("creditor: ", creditorId, " | debtor: ", debtorId);
     // console.log(
@@ -47,8 +41,11 @@ function simplify(graph) {
     //   amount[debtorId].toFixed(2)
     // );
 
+    const creditorId = getMax(amount);
+    const debtorId = getMin(amount);
+
     // Determine the max that debtor has to pay the creditor
-    let debt = Math.min(-amount[debtorId], amount[creditorId]);
+    const debt = Math.min(-amount[debtorId], amount[creditorId]);
     amount[creditorId] -= debt;
     amount[debtorId] += debt;
 
@@ -61,9 +58,6 @@ function simplify(graph) {
     });
 
     // console.log("after: ", amount, `\n\n`);
-
-    creditorId = getMax(amount);
-    debtorId = getMin(amount);
   }
 
   return result;

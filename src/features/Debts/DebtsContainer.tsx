@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { Friend } from "../../types";
@@ -13,43 +14,9 @@ function DebtsContainer() {
   const friends = useSelector((state: RootState) => state.friends);
 
   const friendsEntries = Object.entries(friends) as [string, Friend][];
-  const count = Object.keys(friends).length;
-
+  const count = friendsEntries.length;
   let total = 0;
 
-  let debts = [] as Debt[];
-
-  for (let i = 0; i < friendsEntries.length; i++) {
-    const [id, friend] = friendsEntries[i];
-
-    total += friend.expense;
-
-    const expense = friend.expense / count;
-
-    for (let j = i; j < friendsEntries.length; j++) {
-      const [nextId, nextFriend] = friendsEntries[j];
-
-      const nextExpense = nextFriend.expense / count;
-
-      const difference = expense - nextExpense;
-
-      if (difference > 0) {
-        debts.push({
-          debtorId: parseInt(nextId),
-          creditorId: parseInt(id),
-          amount: difference,
-        });
-      } else if (difference < 0) {
-        debts.push({
-          debtorId: parseInt(id),
-          creditorId: parseInt(nextId),
-          amount: Math.abs(difference),
-        });
-      }
-    }
-  }
-
-  // ===================================
   const debtsAdjMatrix = friendsEntries.map(([debtorId, debtor]) =>
     friendsEntries.map(([creditorId, creditor]) => {
       if (debtorId === creditorId) return 0;
@@ -58,13 +25,37 @@ function DebtsContainer() {
     })
   );
 
-  // console.log(debtsAdjMatrix);
+  const [debts, setDebts] = useState<Debt[]>([]);
+
+  useEffect(() => {
+    let debtsAccumulated = [] as Debt[];
+
+    for (let i = 0; i < debtsAdjMatrix.length; i++) {
+      for (let j = i + 1; j < debtsAdjMatrix.length; j++) {
+        const difference = debtsAdjMatrix[i][j] - debtsAdjMatrix[j][i];
+        if (difference > 0) {
+          debtsAccumulated.push({
+            debtorId: i,
+            creditorId: j,
+            amount: difference,
+          });
+        } else if (difference < 0) {
+          debtsAccumulated.push({
+            debtorId: j,
+            creditorId: i,
+            amount: Math.abs(difference),
+          });
+        }
+      }
+    }
+
+    setDebts(debtsAccumulated);
+  }, [friends]);
 
   const handleSimplify = () => {
     const debtsSimplified = simplify(debtsAdjMatrix);
-    console.log(debtsSimplified);
+    setDebts(debtsSimplified);
   };
-  // ===================================
 
   return (
     <>
