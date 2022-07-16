@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useFriends } from "../../redux/store";
-import { Friend } from "../../types";
 import simplify from "./simplify";
 
 interface Debt {
@@ -12,18 +11,18 @@ interface Debt {
 function DebtsContainer() {
   const friends = useFriends();
 
-  const count = Object.keys(friends).length;
-  let total = 0;
+  const count = friends.length;
+  const total = friends.reduce((accumulator, friend) => {
+    return accumulator + friend.expense;
+  }, 0);
 
   const [debtsAdjMatrix, setDebtsAdjMatrix] = useState<number[][]>([[]]);
   const [debts, setDebts] = useState<Debt[]>([]);
 
   useEffect(() => {
-    const friendsEntries = Object.entries(friends) as [string, Friend][];
-
-    const matrix = friendsEntries.map(([debtorId, debtor]) =>
-      friendsEntries.map(([creditorId, creditor]) => {
-        if (debtorId === creditorId) return 0;
+    const matrix = friends.map((debtor, debtorIndex) =>
+      friends.map((creditor, creditorIndex) => {
+        if (debtorIndex === creditorIndex) return 0;
 
         return creditor.expense / count;
       })
@@ -79,8 +78,8 @@ function DebtsContainer() {
           <ul className="debts-list">
             {debts.map((debt, index) => (
               <li key={index}>
-                {`${friends[debt.debtorId].name} ➡ ${
-                  friends[debt.creditorId].name
+                {`${friends[debt.debtorId]?.name} ➡ ${
+                  friends[debt.creditorId]?.name
                 }`}
                 <span>{`$${debt.amount.toFixed(2)}`}</span>
               </li>

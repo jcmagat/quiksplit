@@ -4,12 +4,12 @@ import { useState } from "react";
 import { Friend } from "../../types";
 
 interface Props {
-  id: number;
+  index: number;
   friend: Friend;
 }
 
 export function FriendCard(props: Props) {
-  const { id, friend } = props;
+  const { index, friend } = props;
 
   const [isEditMode, setIsEditMode] = useState(false);
 
@@ -21,12 +21,12 @@ export function FriendCard(props: Props) {
   const handleSave = (event: any) => {
     event.preventDefault();
 
-    dispatch(editFriend({ id, friend: { name, expense } }));
+    dispatch(editFriend({ index, friend: { name, expense } }));
     setIsEditMode(false);
   };
 
   const handleDelete = () => {
-    dispatch(deleteFriend({ id }));
+    dispatch(deleteFriend({ index }));
   };
 
   if (isEditMode) {

@@ -1,32 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Friend, FriendMap } from "../types";
+import { Friend } from "../types";
 
 interface Action {
   type: string;
   payload: {
-    id?: number;
+    index?: number;
     friend?: Friend;
   };
 }
 
 export const friendsSlice = createSlice({
   name: "friends",
-  initialState: {} as FriendMap,
+  initialState: [] as Friend[],
   reducers: {
     addFriend: (state, action: Action) => {
       if (!action.payload.friend) return;
 
-      state[Object.keys(state).length] = action.payload.friend;
+      state.push(action.payload.friend);
     },
     deleteFriend: (state, action: Action) => {
-      if (action.payload.id == null) return;
+      if (action.payload.index == null) return;
 
-      delete state[action.payload.id];
+      state.splice(action.payload.index, 1);
     },
     editFriend: (state, action: Action) => {
-      if (action.payload.id == null || !action.payload.friend) return;
+      if (action.payload.index == null || !action.payload.friend) return;
 
-      state[action.payload.id] = action.payload.friend;
+      state[action.payload.index] = action.payload.friend;
     },
   },
 });

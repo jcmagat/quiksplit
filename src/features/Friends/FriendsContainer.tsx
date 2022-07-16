@@ -14,8 +14,8 @@ export function FriendsContainer() {
 
   return (
     <div className="friends-container">
-      {Object.entries(friends).map(([id, friend]) => (
-        <FriendCard key={id} id={parseInt(id)} friend={friend} />
+      {friends.map((friend, index) => (
+        <FriendCard key={index} index={index} friend={friend} />
       ))}
 
       <button className="friend-add" onClick={handleAddFriend}>
