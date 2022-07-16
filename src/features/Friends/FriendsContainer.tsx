@@ -1,10 +1,10 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useFriends } from "../../redux/store";
 import { addFriend } from "../../redux/friends";
-import { RootState } from "../../redux/store";
 import { FriendCard } from "./FriendCard";
 
 export function FriendsContainer() {
-  const friends = useSelector((state: RootState) => state.friends);
+  const friends = useFriends();
 
   const dispatch = useDispatch();
 

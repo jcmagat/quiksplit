@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
+import { useFriends } from "../../redux/store";
 import { Friend } from "../../types";
 import simplify from "./simplify";
 
@@ -11,21 +10,27 @@ interface Debt {
 }
 
 function DebtsContainer() {
-  const friends = useSelector((state: RootState) => state.friends);
+  const friends = useFriends();
 
-  const friendsEntries = Object.entries(friends) as [string, Friend][];
-  const count = friendsEntries.length;
+  const count = Object.keys(friends).length;
   let total = 0;
 
-  const debtsAdjMatrix = friendsEntries.map(([debtorId, debtor]) =>
-    friendsEntries.map(([creditorId, creditor]) => {
-      if (debtorId === creditorId) return 0;
-
-      return creditor.expense / count;
-    })
-  );
-
+  const [debtsAdjMatrix, setDebtsAdjMatrix] = useState<number[][]>([[]]);
   const [debts, setDebts] = useState<Debt[]>([]);
+
+  useEffect(() => {
+    const friendsEntries = Object.entries(friends) as [string, Friend][];
+
+    const matrix = friendsEntries.map(([debtorId, debtor]) =>
+      friendsEntries.map(([creditorId, creditor]) => {
+        if (debtorId === creditorId) return 0;
+
+        return creditor.expense / count;
+      })
+    );
+
+    setDebtsAdjMatrix(matrix);
+  }, [friends, count]);
 
   useEffect(() => {
     let debtsAccumulated = [] as Debt[];
@@ -50,7 +55,7 @@ function DebtsContainer() {
     }
 
     setDebts(debtsAccumulated);
-  }, [friends]);
+  }, [debtsAdjMatrix]);
 
   const handleSimplify = () => {
     const debtsSimplified = simplify(debtsAdjMatrix);
