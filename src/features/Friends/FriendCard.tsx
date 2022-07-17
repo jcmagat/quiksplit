@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { editFriend, deleteFriend } from "../../redux/friends";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Friend } from "../../types";
 
 interface Props {
@@ -16,6 +16,11 @@ export function FriendCard(props: Props) {
   const [name, setName] = useState(friend.name);
   const [expense, setExpense] = useState(friend.expense);
 
+  useEffect(() => {
+    setName(friend.name);
+    setExpense(friend.expense);
+  }, [friend.name, friend.expense]);
+
   const dispatch = useDispatch();
 
   const handleSave = (event: any) => {
@@ -27,6 +32,7 @@ export function FriendCard(props: Props) {
 
   const handleDelete = () => {
     dispatch(deleteFriend({ index }));
+    setIsEditMode(false);
   };
 
   if (isEditMode) {
