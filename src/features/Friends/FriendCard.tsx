@@ -13,20 +13,22 @@ export function FriendCard(props: Props) {
 
   const [isEditMode, setIsEditMode] = useState(false);
 
+  const [emoji, setEmoji] = useState(friend.emoji);
   const [name, setName] = useState(friend.name);
   const [expense, setExpense] = useState(friend.expense);
 
   useEffect(() => {
+    setEmoji(friend.emoji);
     setName(friend.name);
     setExpense(friend.expense);
-  }, [friend.name, friend.expense]);
+  }, [friend.emoji, friend.name, friend.expense]);
 
   const dispatch = useDispatch();
 
   const handleSave = (event: any) => {
     event.preventDefault();
 
-    dispatch(editFriend({ index, friend: { name, expense } }));
+    dispatch(editFriend({ index, friend: { emoji, name, expense } }));
     setIsEditMode(false);
   };
 
@@ -63,7 +65,10 @@ export function FriendCard(props: Props) {
 
   return (
     <div className="friend-card">
-      <h5>{friend.name}</h5>
+      <div className="friend-identity">
+        <span>{friend.emoji}</span>
+        <h5>{friend.name}</h5>
+      </div>
 
       <p>{`$${friend.expense.toFixed(2)}`}</p>
 

@@ -1,6 +1,7 @@
 .parent-container {
   max-width: 600px;
   margin: auto;
+  padding-bottom: 4em;
 }
 
 .nav {
@@ -69,6 +70,20 @@
   cursor: pointer;
 }
 
+.friend-identity {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1.5em;
+}
+
 .debts-container {
   border: 1px solid #828a95;
   border-radius: 0.5em;
@@ -105,5 +120,15 @@
 .debts-list span {
   position: absolute;
   right: 2em;
+}
+
+.debts-simplify {
+  display: block;
+  margin: 2em auto 1em;
+  cursor: pointer;
+  padding: 0.75em 4em;
+  border: 1px solid #828a95;
+  background: inherit;
+  border-radius: 0.5em;
 }
 /*# sourceMappingURL=style.css.map */

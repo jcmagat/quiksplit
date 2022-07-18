@@ -3,13 +3,20 @@ import { useFriends } from "../../redux/store";
 import { addFriend } from "../../redux/friends";
 import { FriendCard } from "./FriendCard";
 
+const emojis = ["💀", "💩", "🤡", "👹", "👺", "👻", "👽", "👾", "🤖"];
+const randomEmoji = () => {
+  return emojis[Math.floor(Math.random() * emojis.length)];
+};
+
 export function FriendsContainer() {
   const friends = useFriends();
 
   const dispatch = useDispatch();
 
   const handleAddFriend = () => {
-    dispatch(addFriend({ friend: { name: "Name", expense: 0 } }));
+    dispatch(
+      addFriend({ friend: { emoji: randomEmoji(), name: "Name", expense: 0 } })
+    );
   };
 
   return (

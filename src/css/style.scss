@@ -5,6 +5,7 @@ $gray: #828a95;
 .parent-container {
   max-width: 600px;
   margin: auto;
+  padding-bottom: 4em;
 }
 
 // ========== Navigation ==========
@@ -60,6 +61,13 @@ $gray: #828a95;
   }
 }
 
+.friend-identity {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5em;
+}
+
 // ========== Debts ==========
 .debts-container {
   border: 1px solid $gray;
@@ -97,4 +105,15 @@ $gray: #828a95;
     position: absolute;
     right: 2em;
   }
+}
+
+.debts-simplify {
+  display: block;
+  margin: 2em auto 1em;
+
+  cursor: pointer;
+  padding: 0.75em 4em;
+  border: 1px solid $gray;
+  background: inherit;
+  border-radius: 0.5em;
 }

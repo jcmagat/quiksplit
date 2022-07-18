@@ -18,6 +18,7 @@ function DebtsContainer() {
 
   const [debtsAdjMatrix, setDebtsAdjMatrix] = useState<number[][]>([[]]);
   const [debts, setDebts] = useState<Debt[]>([]);
+  const [isSimplified, setIsSimplified] = useState(false);
 
   useEffect(() => {
     const matrix = friends.map((debtor, debtorIndex) =>
@@ -54,19 +55,23 @@ function DebtsContainer() {
     }
 
     setDebts(debtsAccumulated);
+    setIsSimplified(false);
   }, [debtsAdjMatrix]);
 
   const handleSimplify = () => {
+    if (isSimplified) return;
+
     const debtsSimplified = simplify(debtsAdjMatrix);
     setDebts(debtsSimplified);
+    setIsSimplified(true);
   };
 
   return (
     <>
-      {count > 0 && (
+      {debts.length > 0 && (
         <div className="debts-container">
           <h4 className="debts-title">
-            Total expenses:
+            Total expenses
             <span>{`$${total.toFixed(2)}`}</span>
           </h4>
 
@@ -86,7 +91,9 @@ function DebtsContainer() {
             ))}
           </ul>
 
-          <button onClick={handleSimplify}>Simplify</button>
+          <button className="debts-simplify" onClick={handleSimplify}>
+            {isSimplified ? "Simplified" : "Simplify"}
+          </button>
         </div>
       )}
     </>
