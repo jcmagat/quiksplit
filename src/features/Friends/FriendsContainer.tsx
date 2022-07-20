@@ -3,7 +3,19 @@ import { useFriends } from "../../redux/store";
 import { addFriend } from "../../redux/friends";
 import { FriendCard } from "./FriendCard";
 
-const emojis = ["💀", "💩", "🤡", "👹", "👺", "👻", "👽", "👾", "🤖"];
+const emojis = [
+  "💀",
+  "💩",
+  "🤡",
+  "👹",
+  "👺",
+  "👻",
+  "👽",
+  "👾",
+  "🤖",
+  "😈",
+  "💀",
+];
 const randomEmoji = () => {
   return emojis[Math.floor(Math.random() * emojis.length)];
 };

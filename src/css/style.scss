@@ -51,6 +51,7 @@ $gray: #828a95;
 }
 
 .friend-card {
+  flex: 1;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -59,7 +60,7 @@ $gray: #828a95;
   border: 1px solid $gray;
   border-radius: 0.5em;
   padding: 0 2em;
-  width: calc(100% - 4em);
+  height: 60px;
 }
 
 .friend-identity {
