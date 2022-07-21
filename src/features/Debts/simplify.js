@@ -13,6 +13,10 @@ function getMax(arr) {
 // finds and prints the minimum
 // cash flow to settle all debts.
 function simplify(graph) {
+  // TODO: validate graph so that it doesn't produce an infinite loop
+  // 1. check for NaN !!important
+  // 2. check for negative numbers
+
   let amount = Array(graph.length).fill(0);
 
   // Calculate the net amount to

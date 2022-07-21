@@ -25,16 +25,24 @@ export function FriendCard(props: Props) {
     setExpense(friend.expense);
   }, [friend.emoji, friend.name, friend.expense]);
 
+  const handleChangeExpense = (event: any) => {
+    let val = parseFloat(event.target.value);
+    val = Number.isNaN(val) ? 0 : val;
+
+    setExpense(val);
+  };
+
+  // ========== Redux ==========
   const dispatch = useDispatch();
 
-  const handleNameChange = (event: any) => {
+  const handleSubmitName = (event: any) => {
     event.preventDefault();
 
     dispatch(editFriend({ index, friend: { emoji, name, expense } }));
     setIsEditNameMode(false);
   };
 
-  const handleExpenseChange = (event: any) => {
+  const handleSubmitExpense = (event: any) => {
     event.preventDefault();
 
     dispatch(editFriend({ index, friend: { emoji, name, expense } }));
@@ -54,7 +62,7 @@ export function FriendCard(props: Props) {
           <span>{friend.emoji}</span>
 
           {isEditNameMode ? (
-            <form onSubmit={handleNameChange}>
+            <form onSubmit={handleSubmitName}>
               <input
                 type="text"
                 value={name}
@@ -67,11 +75,14 @@ export function FriendCard(props: Props) {
         </div>
 
         {isEditExpenseMode ? (
-          <form onSubmit={handleExpenseChange}>
+          <form onSubmit={handleSubmitExpense}>
             <input
               type="number"
+              step={0.01}
+              min={0}
+              max={999999.99}
               value={expense}
-              onChange={(event) => setExpense(parseInt(event.target.value))}
+              onChange={handleChangeExpense}
             />
           </form>
         ) : (
