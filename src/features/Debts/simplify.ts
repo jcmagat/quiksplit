@@ -1,3 +1,9 @@
+interface Debt {
+  debtorId: number; // person who owes the debt
+  creditorId: number; // person to whom the debt is owed
+  amount: number;
+}
+
 function getMin(arr: number[]) {
   return arr.indexOf(Math.min(...arr));
 }
@@ -6,54 +12,53 @@ function getMax(arr: number[]) {
   return arr.indexOf(Math.max(...arr));
 }
 
-function simplify(graph: number[][]) {
-  // TODO: validate graph so that it doesn't produce an infinite loop
-  // - check for NaN !!important
-  // - check if matrix is a square (length = width) !!important
-  // - check for negative numbers
+/**
+ * Simplifies a debt adjacency matrix
+ *
+ * @param graph - The adjacency matrix (i.e. graph[i][j] is debt owed by i to j)
+ * @returns The minimum debts after simplification
+ */
+function simplify(graph: number[][]): Debt[] {
+  let expenses = Array<number>(graph.length).fill(0);
+  let results = [] as Debt[];
 
-  let amount = Array<number>(graph.length).fill(0);
+  for (let i = 0; i < graph.length; i++) {
+    // If matrix is not symmetric
+    if (graph[i].length !== graph.length) return [];
 
-  for (let p = 0; p < amount.length; p++) {
-    for (let i = 0; i < amount.length; i++) {
-      amount[p] += graph[i][p] - graph[p][i];
+    // If graph contains NaN
+    // or if graph contains a negative number
+    if (graph[i].some((num) => Number.isNaN(num) || num < 0)) return [];
+
+    // If graph is valid, construct expenses
+    for (let j = 0; j < graph.length; j++) {
+      // Sum of
+      // debt owed by j to i - debt owed by i to j
+      expenses[i] += graph[j][i] - graph[i][j];
     }
   }
 
-  let result = [];
-
-  // Finish the while loop when every number in amount is 0
+  // Finish the while loop when every number in expenses is 0
   // (i.e. when all debts are settled)
-  while (amount.some((num) => Number(num.toFixed(2)) !== 0)) {
-    // console.log("before: ", amount);
-    // console.log("creditor: ", creditorId, " | debtor: ", debtorId);
-    // console.log(
-    //   "credit: ",
-    //   amount[creditorId].toFixed(2),
-    //   " | debt: ",
-    //   amount[debtorId].toFixed(2)
-    // );
+  while (expenses.some((num) => Number(num.toFixed(2)) !== 0)) {
+    const debtorId = getMin(expenses);
+    const creditorId = getMax(expenses);
+    const debt = Math.min(-expenses[debtorId], expenses[creditorId]);
 
-    const creditorId = getMax(amount);
-    const debtorId = getMin(amount);
+    // Debtor pays creditor whichever is less:
+    // - debt owed by debtor
+    // - debt owed to creditor
+    expenses[debtorId] += debt;
+    expenses[creditorId] -= debt;
 
-    // Determine the max that debtor has to pay the creditor
-    const debt = Math.min(-amount[debtorId], amount[creditorId]);
-    amount[creditorId] -= debt;
-    amount[debtorId] += debt;
-
-    // console.log(`${debtorId} pays ${creditorId}: $${debt}`);
-
-    result.push({
+    results.push({
       debtorId: debtorId,
       creditorId: creditorId,
       amount: debt,
     });
-
-    // console.log("after: ", amount, `\n\n`);
   }
 
-  return result;
+  return results;
 }
 
 export default simplify;
