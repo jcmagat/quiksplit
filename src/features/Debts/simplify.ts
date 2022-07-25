@@ -19,8 +19,12 @@ function getMax(arr: number[]) {
  * @returns The minimum debts after simplification
  */
 function simplify(graph: number[][]): Debt[] {
-  let expenses = Array<number>(graph.length).fill(0);
   let results = [] as Debt[];
+
+  // expenses[i] is the sum of (debt owed to i - debt owed by i)
+  // A negative number means i is a debtor
+  // A positive number means i is a creditor
+  let expenses = Array<number>(graph.length).fill(0);
 
   for (let i = 0; i < graph.length; i++) {
     // If matrix is not symmetric
@@ -32,15 +36,13 @@ function simplify(graph: number[][]): Debt[] {
 
     // If graph is valid, construct expenses
     for (let j = 0; j < graph.length; j++) {
-      // Sum of
-      // debt owed by j to i - debt owed by i to j
       expenses[i] += graph[j][i] - graph[i][j];
     }
   }
 
-  // Finish the while loop when every number in expenses is 0
+  // Finish the while loop when <2 numbers in expenses are non-zero
   // (i.e. when all debts are settled)
-  while (expenses.some((num) => Number(num.toFixed(2)) !== 0)) {
+  while (expenses.filter((num) => Number(num.toFixed(2)) !== 0).length > 1) {
     const debtorId = getMin(expenses);
     const creditorId = getMax(expenses);
     const debt = Math.min(-expenses[debtorId], expenses[creditorId]);
@@ -57,6 +59,8 @@ function simplify(graph: number[][]): Debt[] {
       amount: debt,
     });
   }
+
+  console.log(expenses);
 
   return results;
 }
