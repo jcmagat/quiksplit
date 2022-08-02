@@ -9,9 +9,17 @@ interface Action {
   };
 }
 
+const initialState: Friend[] = [
+  {
+    emoji: "👻",
+    name: "Name",
+    expense: 0,
+  },
+];
+
 export const friendsSlice = createSlice({
   name: "friends",
-  initialState: [] as Friend[],
+  initialState: initialState,
   reducers: {
     addFriend: (state, action: Action) => {
       if (!action.payload.friend) return;

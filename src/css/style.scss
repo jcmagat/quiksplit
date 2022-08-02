@@ -10,7 +10,7 @@ $gray: #828a95;
 
 // ========== Navigation ==========
 .nav {
-  margin: 1em 1em 2em;
+  margin: 1em 0 2em;
 }
 
 .nav-title {
@@ -27,7 +27,7 @@ $gray: #828a95;
 
 // ========== Friends ==========
 .friends-container {
-  margin: 0 1em 2em;
+  margin: 0 0 2em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,47 +42,34 @@ $gray: #828a95;
   border-radius: 0.5em;
 }
 
-.friend-card-container {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1em;
+.friend-card {
+  border: 1px solid $gray;
+  border-radius: 0.5em;
+  padding: 1em 2em;
+  width: calc(100% - 4em); // - 4em to account for padding
 }
 
-.friend-card {
-  flex: 1;
+.friend-card-content {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-
-  border: 1px solid $gray;
-  border-radius: 0.5em;
-  padding: 0 2em;
-  height: 60px;
 }
 
-.friend-identity {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1.5em;
-}
-
-.friend-delete {
-  height: 50px;
-  width: 50px;
-  border: none;
-  background: none;
-  cursor: pointer;
+.friend-card-buttons {
+  button {
+    height: 50px;
+    // width: 50px;
+    border: 1px solid $gray;
+    background: none;
+    cursor: pointer;
+  }
 }
 
 // ========== Debts ==========
 .debts-container {
   border: 1px solid $gray;
   border-radius: 0.5em;
-  margin: 0 1em;
 }
 
 .debts-title {

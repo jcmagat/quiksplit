@@ -11,13 +11,11 @@ interface Props {
 export function FriendCard(props: Props) {
   const { index, friend } = props;
 
+  const [isEditMode, setIsEditMode] = useState(true);
+
   const [emoji, setEmoji] = useState(friend.emoji);
-
   const [name, setName] = useState(friend.name);
-  const [isEditNameMode, setIsEditNameMode] = useState(false);
-
   const [expense, setExpense] = useState(friend.expense);
-  const [isEditExpenseMode, setIsEditExpenseMode] = useState(false);
 
   useEffect(() => {
     setEmoji(friend.emoji);
@@ -35,47 +33,31 @@ export function FriendCard(props: Props) {
   // ========== Redux ==========
   const dispatch = useDispatch();
 
-  const handleSubmitName = (event: any) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault();
 
     dispatch(editFriend({ index, friend: { emoji, name, expense } }));
-    setIsEditNameMode(false);
-  };
-
-  const handleSubmitExpense = (event: any) => {
-    event.preventDefault();
-
-    dispatch(editFriend({ index, friend: { emoji, name, expense } }));
-    setIsEditExpenseMode(false);
+    setIsEditMode(false);
   };
 
   const handleDelete = () => {
     dispatch(deleteFriend({ index }));
-    setIsEditNameMode(false);
-    setIsEditExpenseMode(false);
+    setIsEditMode(false);
   };
 
   return (
-    <div className="friend-card-container">
-      <div className="friend-card">
-        <div className="friend-identity">
-          <span>{friend.emoji}</span>
+    <>
+      {isEditMode ? (
+        <form className="friend-card" onSubmit={handleSubmit}>
+          <div className="friend-card-content">
+            <span>{friend.emoji}</span>
 
-          {isEditNameMode ? (
-            <form onSubmit={handleSubmitName}>
-              <input
-                type="text"
-                value={name}
-                onChange={(event) => setName(event.target.value)}
-              />
-            </form>
-          ) : (
-            <h5 onClick={() => setIsEditNameMode(true)}>{friend.name}</h5>
-          )}
-        </div>
+            <input
+              type="text"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+            />
 
-        {isEditExpenseMode ? (
-          <form onSubmit={handleSubmitExpense}>
             <input
               type="number"
               step={0.01}
@@ -84,17 +66,33 @@ export function FriendCard(props: Props) {
               value={expense}
               onChange={handleChangeExpense}
             />
-          </form>
-        ) : (
-          <p
-            onClick={() => setIsEditExpenseMode(true)}
-          >{`$${friend.expense.toFixed(2)}`}</p>
-        )}
-      </div>
+          </div>
 
-      <button className="friend-delete" onClick={handleDelete}>
-        <i className="fa-solid fa-trash"></i>
-      </button>
-    </div>
+          <div className="friend-card-buttons">
+            <button
+              className="friend-delete"
+              type="button"
+              onClick={handleDelete}
+            >
+              <i className="fa-solid fa-trash"></i>
+            </button>
+
+            <button type="submit">
+              <i className="fa-solid fa-check"></i>
+            </button>
+          </div>
+        </form>
+      ) : (
+        <div className="friend-card" onClick={() => setIsEditMode(true)}>
+          <div className="friend-card-content">
+            <span>{friend.emoji}</span>
+
+            <h5>{friend.name}</h5>
+
+            <p>{`$${friend.expense.toFixed(2)}`}</p>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
