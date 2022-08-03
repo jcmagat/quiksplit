@@ -70,26 +70,35 @@ function DebtsContainer() {
     <>
       {debts.length > 0 && (
         <div className="debts-container">
-          <h4 className="debts-title">
+          <h3 className="debts-title">
             Total expenses
             <span>{`$${total.toFixed(2)}`}</span>
-          </h4>
+          </h3>
 
           <p className="debts-subtitle">
             Each person pays
             <span>{`$${(total / count).toFixed(2)}`}</span>
           </p>
 
-          <ul className="debts-list">
+          <ol className="debts-list">
+            <p>Steps to settle debts</p>
+
             {debts.map((debt, index) => (
               <li key={index}>
-                {`${friends[debt.debtorId]?.name} ➡ ${
+                {`${friends[debt.debtorId]?.emoji} ${
+                  friends[debt.debtorId]?.name
+                }`}
+
+                <i className="fa-solid fa-angle-right"></i>
+
+                {`${friends[debt.creditorId]?.emoji} ${
                   friends[debt.creditorId]?.name
                 }`}
+
                 <span>{`$${debt.amount.toFixed(2)}`}</span>
               </li>
             ))}
-          </ul>
+          </ol>
 
           <button className="debts-simplify" onClick={handleSimplify}>
             {isSimplified ? "Simplified" : "Simplify"}

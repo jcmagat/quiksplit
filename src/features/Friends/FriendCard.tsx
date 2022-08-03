@@ -56,7 +56,7 @@ export function FriendCard(props: Props) {
               className="friend-card-name"
               type="text"
               autoFocus
-              value={name}
+              placeholder={name}
               onChange={(event) => setName(event.target.value)}
             />
 
@@ -72,7 +72,7 @@ export function FriendCard(props: Props) {
 
           <div className="friend-card-buttons">
             <button type="button" onClick={handleDelete}>
-              <i className="fa-solid fa-trash"></i>
+              <i className="fa-solid fa-trash-can"></i>
             </button>
 
             <button type="submit">

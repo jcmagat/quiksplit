@@ -1,7 +1,7 @@
 button {
   cursor: pointer;
   padding: 0.75em 4em;
-  border: 1px solid #828a95;
+  border: 1px solid #d8d8d8;
   background: inherit;
   border-radius: 0.5em;
 }
@@ -44,7 +44,7 @@ button {
 }
 
 .friend-card {
-  border: 1px solid #828a95;
+  border: 1px solid #d8d8d8;
   border-radius: 0.5em;
   padding: 1em 2em;
   width: calc(100% - 4em);
@@ -89,13 +89,13 @@ button {
 }
 
 .debts-container {
-  border: 1px solid #828a95;
+  border: 1px solid #d8d8d8;
   border-radius: 0.5em;
 }
 
 .debts-title {
   position: relative;
-  margin: 1em 2em 0;
+  margin: 1em 1.7em 0;
 }
 
 .debts-title span {
@@ -105,24 +105,39 @@ button {
 
 .debts-subtitle {
   position: relative;
-  border-bottom: 1px solid #828a95;
-  margin: 0;
-  padding: 0.5em 2em;
+  border-bottom: 1px solid #d8d8d8;
+  margin: 0 1em;
+  padding: 0 1em 0.5em;
 }
 
 .debts-subtitle span {
   position: absolute;
-  right: 2em;
+  right: 1em;
 }
 
 .debts-list {
   position: relative;
-  padding: 0 3em;
+  padding: 0;
+  margin: 0 2em;
+}
+
+.debts-list p {
+  margin: 0.5em 0;
+}
+
+.debts-list li {
+  margin-left: 1em;
+  padding-left: 0.5em;
+}
+
+.debts-list i {
+  padding: 0 1em;
+  color: #828a95;
 }
 
 .debts-list span {
   position: absolute;
-  right: 2em;
+  right: 0;
 }
 
 .debts-simplify {

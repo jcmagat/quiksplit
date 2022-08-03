@@ -1,11 +1,12 @@
 // ========== Variables ==========
 $gray: #828a95;
+$lightGray: #d8d8d8;
 
 // ========== Default ==========
 button {
   cursor: pointer;
   padding: 0.75em 4em;
-  border: 1px solid $gray;
+  border: 1px solid $lightGray;
   background: inherit;
   border-radius: 0.5em;
 }
@@ -44,7 +45,7 @@ button {
 }
 
 .friend-card {
-  border: 1px solid $gray;
+  border: 1px solid $lightGray;
   border-radius: 0.5em;
   padding: 1em 2em;
   width: calc(100% - 4em); // - 4em to account for padding
@@ -74,13 +75,13 @@ button {
 
 // ========== Debts ==========
 .debts-container {
-  border: 1px solid $gray;
+  border: 1px solid $lightGray;
   border-radius: 0.5em;
 }
 
 .debts-title {
   position: relative;
-  margin: 1em 2em 0;
+  margin: 1em 1.7em 0;
 
   span {
     position: absolute;
@@ -90,23 +91,38 @@ button {
 
 .debts-subtitle {
   position: relative;
-  border-bottom: 1px solid $gray;
-  margin: 0;
-  padding: 0.5em 2em;
+  border-bottom: 1px solid $lightGray;
+  margin: 0 1em;
+  padding: 0 1em 0.5em;
 
   span {
     position: absolute;
-    right: 2em;
+    right: 1em;
   }
 }
 
 .debts-list {
   position: relative;
-  padding: 0 3em;
+  padding: 0;
+  margin: 0 2em;
+
+  p {
+    margin: 0.5em 0;
+  }
+
+  li {
+    margin-left: 1em;
+    padding-left: 0.5em;
+  }
+
+  i {
+    padding: 0 1em;
+    color: $gray;
+  }
 
   span {
     position: absolute;
-    right: 2em;
+    right: 0;
   }
 }
 
