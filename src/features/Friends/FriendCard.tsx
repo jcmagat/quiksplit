@@ -50,10 +50,12 @@ export function FriendCard(props: Props) {
       {isEditMode ? (
         <form className="friend-card" onSubmit={handleSubmit}>
           <div className="friend-card-content">
-            <span>{friend.emoji}</span>
+            <p>{friend.emoji}</p>
 
             <input
+              className="friend-card-name"
               type="text"
+              autoFocus
               value={name}
               onChange={(event) => setName(event.target.value)}
             />
@@ -69,11 +71,7 @@ export function FriendCard(props: Props) {
           </div>
 
           <div className="friend-card-buttons">
-            <button
-              className="friend-delete"
-              type="button"
-              onClick={handleDelete}
-            >
+            <button type="button" onClick={handleDelete}>
               <i className="fa-solid fa-trash"></i>
             </button>
 
@@ -85,9 +83,9 @@ export function FriendCard(props: Props) {
       ) : (
         <div className="friend-card" onClick={() => setIsEditMode(true)}>
           <div className="friend-card-content">
-            <span>{friend.emoji}</span>
+            <p>{friend.emoji}</p>
 
-            <h5>{friend.name}</h5>
+            <h5 className="friend-card-name">{friend.name}</h5>
 
             <p>{`$${friend.expense.toFixed(2)}`}</p>
           </div>

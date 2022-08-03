@@ -37,7 +37,7 @@ export function FriendsContainer() {
         <FriendCard key={index} index={index} friend={friend} />
       ))}
 
-      <button className="friend-add" onClick={handleAddFriend}>
+      <button onClick={handleAddFriend}>
         <i className="fa-solid fa-plus"></i>
       </button>
     </div>
