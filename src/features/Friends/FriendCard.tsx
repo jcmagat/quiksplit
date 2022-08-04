@@ -83,11 +83,11 @@ export function FriendCard(props: Props) {
       ) : (
         <div className="friend-card" onClick={() => setIsEditMode(true)}>
           <div className="friend-card-content">
-            <p>{friend.emoji}</p>
+            <span>{friend.emoji}</span>
 
-            <h5 className="friend-card-name">{friend.name}</h5>
+            <h2 className="friend-card-name">{friend.name}</h2>
 
-            <p>{`$${friend.expense.toFixed(2)}`}</p>
+            <span>{`$${friend.expense.toFixed(2)}`}</span>
           </div>
         </div>
       )}

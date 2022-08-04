@@ -1,6 +1,23 @@
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.3em;
+  font-weight: 700;
+}
+
 button {
   cursor: pointer;
-  padding: 0.75em 4em;
+  padding: 1em 4em;
   border: 1px solid #d8d8d8;
   background: inherit;
   border-radius: 0.5em;
@@ -9,7 +26,7 @@ button {
 .parent-container {
   max-width: 600px;
   margin: auto;
-  padding-bottom: 4em;
+  padding: 1em 1em 3em;
 }
 
 .nav {
@@ -64,6 +81,10 @@ button {
   gap: 1em;
 }
 
+.friend-card-content span {
+  font-size: 1.3em;
+}
+
 .friend-card-name {
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -95,7 +116,7 @@ button {
 
 .debts-title {
   position: relative;
-  margin: 1em 1.7em 0;
+  margin: 1em 1.5em 0;
 }
 
 .debts-title span {
@@ -108,6 +129,7 @@ button {
   border-bottom: 1px solid #d8d8d8;
   margin: 0 1em;
   padding: 0 1em 0.5em;
+  color: #828a95;
 }
 
 .debts-subtitle span {
@@ -123,11 +145,13 @@ button {
 
 .debts-list p {
   margin: 0.5em 0;
+  color: #828a95;
 }
 
 .debts-list li {
   margin-left: 1em;
   padding-left: 0.5em;
+  color: #828a95;
 }
 
 .debts-list i {
@@ -136,6 +160,11 @@ button {
 }
 
 .debts-list span {
+  color: black;
+  font-weight: 500;
+}
+
+.debts-list-amount {
   position: absolute;
   right: 0;
 }

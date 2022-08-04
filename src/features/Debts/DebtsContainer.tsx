@@ -70,10 +70,10 @@ function DebtsContainer() {
     <>
       {debts.length > 0 && (
         <div className="debts-container">
-          <h3 className="debts-title">
+          <h2 className="debts-title">
             Total expenses
             <span>{`$${total.toFixed(2)}`}</span>
-          </h3>
+          </h2>
 
           <p className="debts-subtitle">
             Each person pays
@@ -85,17 +85,21 @@ function DebtsContainer() {
 
             {debts.map((debt, index) => (
               <li key={index}>
-                {`${friends[debt.debtorId]?.emoji} ${
-                  friends[debt.debtorId]?.name
-                }`}
+                <span>
+                  {`${friends[debt.debtorId]?.emoji} ${
+                    friends[debt.debtorId]?.name
+                  }`}
 
-                <i className="fa-solid fa-angle-right"></i>
+                  <i className="fa-solid fa-angle-right"></i>
 
-                {`${friends[debt.creditorId]?.emoji} ${
-                  friends[debt.creditorId]?.name
-                }`}
+                  {`${friends[debt.creditorId]?.emoji} ${
+                    friends[debt.creditorId]?.name
+                  }`}
 
-                <span>{`$${debt.amount.toFixed(2)}`}</span>
+                  <span className="debts-list-amount">
+                    {`$${debt.amount.toFixed(2)}`}
+                  </span>
+                </span>
               </li>
             ))}
           </ol>
