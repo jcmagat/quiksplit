@@ -50,7 +50,7 @@ export function FriendCard(props: Props) {
       {isEditMode ? (
         <form className="friend-card" onSubmit={handleSubmit}>
           <div className="friend-card-content">
-            <p>{friend.emoji}</p>
+            <h1>{friend.emoji}</h1>
 
             <input
               className="friend-card-name"
@@ -83,7 +83,7 @@ export function FriendCard(props: Props) {
       ) : (
         <div className="friend-card" onClick={() => setIsEditMode(true)}>
           <div className="friend-card-content">
-            <span>{friend.emoji}</span>
+            <h1>{friend.emoji}</h1>
 
             <h2 className="friend-card-name">{friend.name}</h2>
 
