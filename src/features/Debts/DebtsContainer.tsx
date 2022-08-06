@@ -71,17 +71,17 @@ function DebtsContainer() {
       {debts.length > 0 && (
         <div className="debts-container">
           <h2 className="debts-title">
-            Total expenses
+            Total
             <span>{`$${total.toFixed(2)}`}</span>
           </h2>
 
           <p className="debts-subtitle">
-            Each person pays
+            Each person spent
             <span>{`$${(total / count).toFixed(2)}`}</span>
           </p>
 
           <ol className="debts-list">
-            <p>Steps to settle debts</p>
+            <p>To evenly split expenses</p>
 
             {debts.map((debt, index) => (
               <li key={index}>

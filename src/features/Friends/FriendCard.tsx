@@ -54,14 +54,16 @@ export function FriendCard(props: Props) {
 
             <input
               className="friend-card-name"
+              autoFocus={!name}
               type="text"
-              autoFocus
-              placeholder={name}
+              placeholder={"Name"}
+              value={name}
               onChange={(event) => setName(event.target.value)}
             />
 
             <input
               type="number"
+              autoFocus={Boolean(name)}
               step={0.01}
               min={0}
               max={999999.99}
@@ -81,7 +83,10 @@ export function FriendCard(props: Props) {
           </div>
         </form>
       ) : (
-        <div className="friend-card" onClick={() => setIsEditMode(true)}>
+        <div
+          className="friend-card friend-card-default"
+          onClick={() => setIsEditMode(true)}
+        >
           <div className="friend-card-content">
             <h1>{friend.emoji}</h1>
 

@@ -12,7 +12,7 @@ interface Action {
 const initialState: Friend[] = [
   {
     emoji: "👻",
-    name: "Name",
+    name: "",
     expense: 0,
   },
 ];

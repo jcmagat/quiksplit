@@ -27,7 +27,7 @@ export function FriendsContainer() {
 
   const handleAddFriend = () => {
     dispatch(
-      addFriend({ friend: { emoji: randomEmoji(), name: "Name", expense: 0 } })
+      addFriend({ friend: { emoji: randomEmoji(), name: "", expense: 0 } })
     );
   };
 
