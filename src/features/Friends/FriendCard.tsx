@@ -25,7 +25,10 @@ export function FriendCard(props: Props) {
 
   const handleChangeExpense = (event: any) => {
     let val = parseFloat(event.target.value);
+    console.log(val);
+
     val = Number.isNaN(val) ? 0 : val;
+    console.log(val);
 
     setExpense(val);
   };
@@ -67,7 +70,7 @@ export function FriendCard(props: Props) {
               step={0.01}
               min={0}
               max={999999.99}
-              value={expense}
+              value={expense.toString()}
               onChange={handleChangeExpense}
             />
           </div>
