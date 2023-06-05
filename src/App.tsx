@@ -1,14 +1,20 @@
 import "./css/style.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navigation from "./features/Navigation";
-import Friends from "./features/Friends";
-import Debts from "./features/Debts";
+import Landing from "./pages/Landing";
+import Bills from "./pages/Bills";
 
 function App() {
   return (
     <div className="parent-container">
-      <Navigation />
-      <Friends />
-      <Debts />
+      <Router>
+        <Navigation />
+
+        <Routes>
+          <Route path="/" element={<Landing />}></Route>
+          <Route path="/bills" element={<Bills />}></Route>
+        </Routes>
+      </Router>
     </div>
   );
 }

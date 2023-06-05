@@ -60,8 +60,6 @@ function simplify(graph: number[][]): Debt[] {
     });
   }
 
-  console.log(expenses);
-
   return results;
 }
 
